@@ -1,5 +1,6 @@
-FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
-LABEL maintainer="Julio Gutierrez julio.guti+nordvpn@pm.me"
+FROM debian:bullseye-slim
+
+LABEL maintainer="Julio Gutierrez <julio.guti+nordvpn@pm.me>"
 
 ARG NORDVPN_VERSION=3.16.5
 ARG DEBIAN_FRONTEND=noninteractive
@@ -14,10 +15,10 @@ RUN apt-get update -y && \
     apt-get autoremove -y && \
     apt-get autoclean -y && \
     rm -rf \
-		/tmp/* \
-		/var/cache/apt/archives/* \
-		/var/lib/apt/lists/* \
-		/var/tmp/*
+        /tmp/* \
+        /var/cache/apt/archives/* \
+        /var/lib/apt/lists/* \
+        /var/tmp/*
 
 COPY /rootfs /
 ENV S6_CMD_WAIT_FOR_SERVICES=1
